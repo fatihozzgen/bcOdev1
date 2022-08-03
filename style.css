@@ -78,9 +78,11 @@ nav > input {
 
 .post {
    position: relative;
+  
 }
 
 span {
    position: absolute;
-   z-index: 1;
+   bottom: 10px;
+   left: 3px;
 }

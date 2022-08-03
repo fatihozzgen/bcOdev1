@@ -1,5 +1,52 @@
+
+
+
+
+
+
+
 const writeToScreen = (data = []) => {
   const postContainer = document.querySelector('.posts');
+  const filterInput = document.querySelector('.filter-input');
+
+  filterInput.addEventListener('input', searchFilter)
+
+  function searchFilter(e) {
+    let elements ='';
+    const result =  data.filter(item => item.title.includes(e.target.value)) 
+    console.log(result)
+
+    if(result.length>0){
+     
+      result.forEach((item) => {
+        elements += `
+        <div class="post">
+        <img src=${item.thumbnailUrl} />
+        <button class="remove"  > X </button>
+        <span> ${item.title} </span>
+        </div>`;
+      });
+      
+  }else{
+      elements =`<div class="no-item"> No Item Found </div>`;
+  }
+
+  postContainer.innerHTML = elements;
+  
+
+  function registerClickHandler(e) {
+    let target = e.target;
+    target.parentNode.parentNode.removeChild(target.parentNode);
+  }
+  
+  var removeBtn = document.querySelectorAll('.remove');
+  
+  for (let i = 0; i < removeBtn.length; i++) {
+    removeBtn[i].addEventListener("click", registerClickHandler, false);
+  }
+  
+
+  }
 
   
 
@@ -7,8 +54,7 @@ const writeToScreen = (data = []) => {
   data.forEach(post => {
    
     elements += `<div class="post">
-                        
-      
+
                         
                         <img src=${post.thumbnailUrl} />
                             <button class="remove"  > X </button>
@@ -18,18 +64,17 @@ const writeToScreen = (data = []) => {
     })
   postContainer.innerHTML = elements;
 
-
-
   function registerClickHandler(e) {
     let target = e.target;
     target.parentNode.parentNode.removeChild(target.parentNode);
-}
-
-var removeBtn = document.querySelectorAll('.remove');
-
-for (let i = 0; i < removeBtn.length; i++) {
+  }
+  
+  var removeBtn = document.querySelectorAll('.remove');
+  
+  for (let i = 0; i < removeBtn.length; i++) {
     removeBtn[i].addEventListener("click", registerClickHandler, false);
-}
+  }
+  
 };
 
 
@@ -52,11 +97,19 @@ const getPosts = async () => {
   
 };
 
-function removeNode() {
-  const myDiv = document.querySelector('.post');
-  const parent = myDiv.parentNode;
-  parent.removeChild(myDiv);
-  console.log('kalktı')
-}
+
 
 getPosts();
+
+
+
+
+
+
+
+
+
+
+
+
+
