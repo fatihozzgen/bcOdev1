@@ -79,3 +79,8 @@ nav > input {
 .post {
    position: relative;
 }
+
+span {
+   position: absolute;
+   z-index: 1;
+}
