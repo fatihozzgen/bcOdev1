@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 const writeToScreen = (data = []) => {
   const postContainer = document.querySelector('.posts');
   const filterInput = document.querySelector('.filter-input');
@@ -19,11 +13,13 @@ const writeToScreen = (data = []) => {
     if(result.length>0){
      
       result.forEach((item) => {
-        elements += `
-        <div class="post">
+
+        elements += `<div class="post">         
         <img src=${item.thumbnailUrl} />
-        <button class="remove"  > X </button>
-        <span> ${item.title} </span>
+            <button class="remove"  > X </button>
+          <div class="caption">
+            <span class="title"> ${item.title} </span>
+          </div>
         </div>`;
       });
       
@@ -44,23 +40,20 @@ const writeToScreen = (data = []) => {
   for (let i = 0; i < removeBtn.length; i++) {
     removeBtn[i].addEventListener("click", registerClickHandler, false);
   }
-  
 
   }
 
   
-
   let elements = '';
   data.forEach(post => {
    
-    elements += `<div class="post">
-
-                        
+    elements += `<div class="post">   
                         <img src=${post.thumbnailUrl} />
                             <button class="remove"  > X </button>
-                            <span> ${post.title} </span>
-                        </div> 
-                  `;
+                          <div class="caption">
+                            <span class="title"> ${post.title} </span>
+                          </div>
+                  </div>`;
     })
   postContainer.innerHTML = elements;
 
@@ -100,16 +93,3 @@ const getPosts = async () => {
 
 
 getPosts();
-
-
-
-
-
-
-
-
-
-
-
-
-
